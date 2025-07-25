@@ -1,0 +1,39 @@
+modules = ["nodejs-20", "web", "php-8.2"]
+run = "npm run serve"
+
+[nix]
+channel = "stable-25_05"
+
+[deployment]
+run = ["sh", "-c", "npm run serve"]
+
+[[ports]]
+localPort = 4173
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[[ports]]
+localPort = 5001
+externalPort = 3001
+
+[[ports]]
+localPort = 5002
+externalPort = 3000
+
+[[ports]]
+localPort = 5003
+externalPort = 3002
+
+[workflows]
+runButton = "Dev Server"
+
+[[workflows.workflow]]
+name = "Dev Server"
+author = 45482223
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm start"
